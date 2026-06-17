@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Amazon-style responsive ecommerce clone built with HTML, CSS, and JavaScript using Unsplash images.">
+  <title>Amazon</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-loader" id="appLoader" aria-hidden="true">
+    <div class="loader-mark">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="topbar">
+      <a class="brand" href="#top" aria-label="Amazon home">
+        <span class="brand-line">
+          <span class="brand-word">amazon</span>
+          <span class="brand-domain">.com</span>
+        </span>
+        <span class="brand-smile"></span>
+      </a>
+
+      <button class="delivery-btn" type="button" aria-label="Choose delivery location">
+        <span class="delivery-pin" aria-hidden="true"></span>
+        <span>
+          <small>Deliver to</small>
+          <strong>United States</strong>
+        </span>
+      </button>
+
+      <form class="search-shell" role="search" aria-label="Search products" id="searchForm">
+        <label class="sr-only" for="searchCategory">Search category</label>
+        <select id="searchCategory" class="search-category" aria-label="Search category">
+          <option value="all">All</option>
+          <option value="Electronics">Electronics</option>
+          <option value="Fashion">Fashion</option>
+          <option value="Home Decor">Home Decor</option>
+          <option value="Beauty">Beauty</option>
+          <option value="Gaming">Gaming</option>
+          <option value="Books">Books</option>
+          <option value="Kitchen">Kitchen</option>
+          <option value="Toys">Toys</option>
+        </select>
+        <label class="sr-only" for="productSearch">Search Amazon</label>
+        <input id="productSearch" class="search-input" type="search" autocomplete="off" placeholder="Search Amazon">
+        <button class="search-btn" type="submit" aria-label="Search">
+          <span aria-hidden="true"></span>
+        </button>
+      </form>
+
+      <label class="language-select" aria-label="Choose language">
+        <span>EN</span>
+        <select id="languageSelect" aria-label="Language selector">
+          <option>EN</option>
+          <option>ES</option>
+          <option>FR</option>
+          <option>DE</option>
+        </select>
+      </label>
+
+      <button class="account-btn nav-action" type="button">
+        <small>Hello, sign in</small>
+        <strong>Account & Lists</strong>
+      </button>
+
+      <button class="orders-btn nav-action" type="button">
+        <small>Returns</small>
+        <strong>& Orders</strong>
+      </button>
+
+      <button class="cart-trigger" id="cartOpenBtn" type="button" aria-label="Open shopping cart">
+        <span class="cart-count" id="cartCount">0</span>
+        <span class="cart-basket" aria-hidden="true"></span>
+        <strong>Cart</strong>
+      </button>
+    </div>
+
+    <nav class="subnav" aria-label="Secondary navigation">
+      <button class="hamburger" type="button" aria-label="Open all departments">
+        <span></span>
+        <strong>All</strong>
+      </button>
+      <a href="#deals">Today's Deals</a>
+      <a href="#customer-service">Customer Service</a>
+      <a href="#registry">Registry</a>
+      <a href="#gift-cards">Gift Cards</a>
+      <a href="#sell">Sell</a>
+      <a href="#plus">Prime</a>
+      <a href="#electronics">Electronics</a>
+      <a href="#fashion">Fashion</a>
+      <a href="#home-kitchen">Home & Kitchen</a>
+      <a href="#books">Books</a>
+      <a href="#mobiles">Mobiles</a>
+      <a href="#computers">Computers</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-label="Featured promotions">
+      <div class="hero-carousel" id="heroCarousel">
+        <article class="hero-slide is-active" data-slide="0">
+          <div class="hero-art hero-art-one" role="img" aria-label="Electronics sale display"></div>
+          <div class="hero-copy">
+            <p>New season event</p>
+            <h1>Deals on tech, style, and everyday essentials</h1>
+            <a href="#products" class="hero-cta">Shop featured picks</a>
+          </div>
+        </article>
+
+        <article class="hero-slide" data-slide="1">
+          <div class="hero-art hero-art-two" role="img" aria-label="Home and kitchen display"></div>
+          <div class="hero-copy">
+            <p>Refresh your space</p>
+            <h2>Kitchen upgrades and cozy home finds</h2>
+            <a href="#categories" class="hero-cta">Explore categories</a>
+          </div>
+        </article>
+
+        <article class="hero-slide" data-slide="2">
+          <div class="hero-art hero-art-three" role="img" aria-label="Gaming and entertainment display"></div>
+          <div class="hero-copy">
+            <p>Limited-time offers</p>
+            <h2>Big savings on entertainment and gaming</h2>
+            <a href="#deals" class="hero-cta">View today's deals</a>
+          </div>
+        </article>
+
+        <button class="carousel-btn prev" type="button" id="heroPrev" aria-label="Previous promotion"></button>
+        <button class="carousel-btn next" type="button" id="heroNext" aria-label="Next promotion"></button>
+        <div class="carousel-dots" id="heroDots" aria-label="Carousel pagination"></div>
+      </div>
+    </section>
+
+    <section class="section categories-section" id="categories" aria-labelledby="categoriesTitle">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Shop by department</p>
+          <h2 id="categoriesTitle">Popular categories</h2>
+        </div>
+        <a href="#products" class="text-link">Browse all products</a>
+      </div>
+      <div class="category-grid" id="categoryGrid"></div>
+    </section>
+
+    <section class="section deals-section" id="deals" aria-labelledby="dealsTitle">
+      <div class="section-heading deals-heading">
+        <div>
+          <p class="eyebrow">Limited-time offers</p>
+          <h2 id="dealsTitle">Today's Deals</h2>
+        </div>
+        <div class="countdown" aria-live="polite">
+          <span>Ends in</span>
+          <strong id="dealCountdown">00:00:00</strong>
+        </div>
+      </div>
+      <div class="deals-grid" id="dealsGrid"></div>
+    </section>
+
+    <section class="section products-section" id="products" aria-labelledby="productsTitle">
+      <div class="section-heading product-heading">
+        <div>
+          <p class="eyebrow">Fresh recommendations</p>
+          <h2 id="productsTitle">Featured products</h2>
+        </div>
+        <div class="product-tools">
+          <div class="result-count" id="resultCount">0 products</div>
+          <label class="sort-select" for="sortSelect">
+            <span>Sort</span>
+            <select id="sortSelect">
+              <option value="featured">Featured</option>
+              <option value="priceLow">Price: Low to High</option>
+              <option value="priceHigh">Price: High to Low</option>
+              <option value="rating">Top Rated</option>
+              <option value="discount">Best Discount</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class="filter-row" id="filterRow" aria-label="Product category filters"></div>
+      <div class="product-grid" id="productGrid"></div>
+      <div class="empty-state" id="emptyState" hidden>
+        <h3>No matching products</h3>
+        <p>Try a different search term or browse every department.</p>
+        <button class="primary-btn" type="button" id="clearFiltersBtn">Clear filters</button>
+      </div>
+    </section>
+
+    <section class="section recommendations-section" id="recommendations" aria-labelledby="recommendationsTitle">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Smart picks</p>
+          <h2 id="recommendationsTitle">Frequently bought together</h2>
+        </div>
+      </div>
+      <div class="bundle-panel" id="bundlePanel"></div>
+
+      <div class="section-heading compact-heading">
+        <div>
+          <p class="eyebrow">Based on your browsing</p>
+          <h2>Recommended products</h2>
+        </div>
+      </div>
+      <div class="recommend-grid" id="recommendedGrid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="customer-service">
+    <button class="back-to-top" type="button" id="backToTop">Back to top</button>
+    <div class="footer-columns">
+      <section>
+        <h2>Get to Know Us</h2>
+        <a href="#about">Careers</a>
+        <a href="#blog">Blog</a>
+        <a href="#about">About Amazon</a>
+        <a href="#sustainability">Sustainability</a>
+      </section>
+      <section id="sell">
+        <h2>Make Money With Us</h2>
+        <a href="#sell-products">Sell products</a>
+        <a href="#affiliate">Become an affiliate</a>
+        <a href="#advertise">Advertise products</a>
+        <a href="#fulfillment">Fulfillment services</a>
+      </section>
+      <section>
+        <h2>Amazon Payment Products</h2>
+        <a href="#cards">Store credit card</a>
+        <a href="#reload">Balance reload</a>
+        <a href="#currency">Currency converter</a>
+        <a href="#installments">Installment plans</a>
+      </section>
+      <section>
+        <h2>Let Us Help You</h2>
+        <a href="#account">Your account</a>
+        <a href="#shipping">Shipping rates</a>
+        <a href="#returns">Returns & replacements</a>
+        <a href="#help">Help center</a>
+      </section>
+    </div>
+    <div class="footer-bottom">
+      <a class="footer-brand" href="#top">amazon</a>
+      <label>
+        <span class="sr-only">Footer language selector</span>
+        <select>
+          <option>English</option>
+          <option>Spanish</option>
+          <option>French</option>
+          <option>German</option>
+        </select>
+      </label>
+      <label>
+        <span class="sr-only">Country selector</span>
+        <select>
+          <option>United States</option>
+          <option>Canada</option>
+          <option>United Kingdom</option>
+          <option>India</option>
+          <option>Australia</option>
+        </select>
+      </label>
+    </div>
+    <div class="legal">
+      <a href="#privacy">Privacy Notice</a>
+      <a href="#terms">Conditions of Use</a>
+      <a href="#ads">Interest-Based Ads</a>
+      <span>&copy; 2026 Amazon-style front-end demo. Not affiliated with Amazon. Photos via Unsplash.</span>
+    </div>
+  </footer>
+
+  <div class="drawer-overlay" id="cartOverlay" hidden></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-labelledby="cartTitle" aria-hidden="true">
+    <div class="drawer-header">
+      <div>
+        <p class="eyebrow">Shopping cart</p>
+        <h2 id="cartTitle">Your items</h2>
+      </div>
+      <button class="icon-btn" type="button" id="cartCloseBtn" aria-label="Close cart">x</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-summary">
+      <div>
+        <span>Subtotal</span>
+        <strong id="cartSubtotal">$0.00</strong>
+      </div>
+      <div>
+        <span>Estimated tax</span>
+        <strong id="cartTax">$0.00</strong>
+      </div>
+      <div class="summary-total">
+        <span>Total</span>
+        <strong id="cartTotal">$0.00</strong>
+      </div>
+      <button class="primary-btn checkout-btn" type="button">Proceed to checkout</button>
+      <button class="ghost-btn" type="button" id="emptyCartBtn">Empty cart</button>
+    </div>
+  </aside>
+
+  <div class="modal-overlay" id="quickViewOverlay" hidden></div>
+  <section class="quick-modal" id="quickViewModal" role="dialog" aria-modal="true" aria-labelledby="quickViewTitle" aria-hidden="true">
+    <button class="icon-btn modal-close" type="button" id="quickViewClose" aria-label="Close quick view">x</button>
+    <div id="quickViewContent"></div>
+  </section>
+
+  <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
